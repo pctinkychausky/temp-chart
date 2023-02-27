@@ -1,7 +1,7 @@
 import "./App.css";
 import LineChart from "./components/LineChart";
 import { useState, useEffect } from "react";
-import { Data } from "./utils/Data";
+// import { Data } from "./utils/Data";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 
