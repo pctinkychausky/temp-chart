@@ -6,40 +6,42 @@ import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 
 function App() {
-  Chart.register(CategoryScale);
   const [ApiData, setApiData] = useState([]);
+  console.log("🚀 ~ file: App.js:10 ~ App ~ ApiData:", ApiData);
+  Chart.register(CategoryScale);
 
   useEffect(() => {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=42d08d24aa2287eeb9badbbd8c4cac72&units=metric`;
-    const fetchData = async () => {
+    async function fetchData() {
       try {
         let response = await fetch(url);
-        if (response.status === 200) {
-          let data = await response.json();
-          setApiData(data);
-        }
+        const json = await response.json();
+        console.log("🚀 ~ file: App.js:19 ~ fetchData ~ json:", json);
+
+        const tempArray = json.list.map((item) => item.main.temp.toFixed(2));
+        const shortenTempArray = tempArray.slice(0, 5);
+
+        setApiData(shortenTempArray);
+        console.log(
+          "🚀 ~ file: App.js:23 ~ fetchData ~ shortenTempArray:",
+          shortenTempArray
+        );
       } catch (error) {
         console.log(error);
       }
-    };
+    }
     fetchData();
   }, []);
 
-  const tempArray = ApiData?.list.map((data) => data.main.temp.toFixed(2));
+  console.log("🚀 ~ file: App.js:10 ~ App ~ ApiData updated:", ApiData);
 
-  const shortenTempArray = tempArray.slice(0, 5);
-
-  const numberTempArray = shortenTempArray?.map(Number);
-
-  console.log("🚀 ~ file: App.js:33 ~ App ~ numberTempArray:", numberTempArray);
-
-  const [chartData, setChartData] = useState({
+  const chartData = {
     labels: ["Mon", "Tue", "Wed", "Thur", "Fri"],
     datasets: [
       {
-        label: "Users Gained ",
+        // label: "Users Gained ",
 
-        data: numberTempArray,
+        data: ApiData,
 
         backgroundColor: [
           "rgba(75,192,192,1)",
@@ -50,15 +52,13 @@ function App() {
         ],
         borderColor: "black",
         borderWidth: 2,
+        tension: 0.3,
       },
     ],
-  });
+  };
+  console.log("🚀 ~ file: App.js:58 ~ App ~ chartData:", chartData);
 
-  return (
-    <div className="App">
-      <LineChart chartData={chartData} />
-    </div>
-  );
+  return <div className="App">{<LineChart chartData={chartData} />}</div>;
 }
 
 export default App;

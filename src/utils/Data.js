@@ -1,3 +1,5 @@
+//In case we have our own API without need of fetching 3rd party one. Then we use below example.
+
 export const Data = [
   {
     id: 1,

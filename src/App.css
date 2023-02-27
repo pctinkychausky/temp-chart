@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  height: 100vh;
+}
+
+.chart-container {
+  width: 60vw;
+  height: 100%;
+  margin: auto;
+  padding-top: 50px;
 }
 
 .App-logo {
