@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is to demonstrate presenting the data in charts with Chart.js. 
+3rd Party Weather Api was called to provide temp data to the line chart. 
+The data was converted into 2 decimal places. 
 
 ## Available Scripts
 
