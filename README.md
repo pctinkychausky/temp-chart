@@ -2,7 +2,7 @@
 
 This project is to demonstrate presenting the data in charts with Chart.js. 
 3rd Party Weather Api was called to provide temp data to the line chart. 
-The data was converted into 2 decimal places and showed when your mouse is hovering on the point.
+The data was converted into 2 decimal places and showed when your mouse is hovering on the points on line.
 
 ## Available Scripts
 
